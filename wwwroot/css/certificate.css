@@ -1,0 +1,136 @@
+.certificate_div {
+        left: 0px;
+        top: 0px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1011px;
+        height: 727px;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    #certificateBg {
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        width: 1011px;
+        height: 727px;
+        z-index: 1;
+    }
+
+    #Certificate h1 {
+        left: 300px;
+        top: 82px;
+        position: absolute;
+        width: 465px;
+        height: 47px;
+        z-index: 2;
+        text-transform: uppercase;
+        font-size: 54px;
+        text-align: center;
+    }
+
+    #Title h2 {
+        left: 300px;
+        top: 165px;
+        position: absolute;
+        width: 465px;
+        height: 19px;
+        z-index: 3;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        text-align: center;
+    }
+
+    #sperator {
+        left: 375px;
+        top: 198px;
+        position: absolute;
+        width: 316px;
+        height: 2px;
+        z-index: 4;
+    }
+
+    #presentedto h3 {
+        left: 300px;
+        top: 226px;
+        position: absolute;
+        width: 465px;
+        height: 14px;
+        z-index: 5;
+        letter-spacing: 6px;
+        font-size: 22px;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+    }
+
+    #NameandSurname name {
+        left: 224px;
+        top: 270px;
+        position: absolute;
+        width: 574px;
+        height: 88px;
+        z-index: 6;
+        text-align: center;
+        font-size: 50px;
+        color: #c49338;
+    }
+
+    #Paragraph p {
+        left: 84px;
+        top: 370px;
+        position: absolute;
+        width: 840px;
+        height: 94px;
+        z-index: 7;
+        font-family: "Arial", sans-serif;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    #logo {
+        left: 411px;
+        top: 517px;
+        position: absolute;
+        width: 186px;
+        height: 195px;
+        z-index: 8;
+    }
+
+    #Date strong {
+        left: 152px;
+        top: 593px;
+        position: absolute;
+        width: 163px;
+        height: 21px;
+        z-index: 9;
+        text-align: center;
+        border-top: 2px solid #000;
+        padding-top: 10px;
+    }
+
+    #signature strong {
+        left: 696px;
+        top: 593px;
+        position: absolute;
+        width: 163px;
+        height: 21px;
+        z-index: 10;
+        text-align: center;
+        border-top: 2px solid #000;
+        padding-top: 10px;
+    }
+    .certificate_div,
+        .certificate_container_main {
+            page-break-after: always;
+        }
+
+    @media print {
+    .certificate_div,
+    .certificate_container_main {
+        page-break-after: always;
+    }
+    @page {
+        size: auto; /* Set page size to auto to fit content */
+    }
+}

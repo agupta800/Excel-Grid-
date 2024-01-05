@@ -1,0 +1,897 @@
+﻿@model AsterWebApp.Models.DropDownModel
+
+<div id="example">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="Id" class="control-label">Schools</label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Schools"></select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Id" class="control-label"> Media File Folder list</label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.MediaFolders"></select>
+            </div>
+            <select id="dataSelector">
+                <option value="StudentInfos">Student Info</option>
+                <option value="StudentMarks">Student Marks</option>
+                <option value="TeacherPerfonalInfos">Teacher Personal Info</option>
+                <!-- Add other options for different datasets -->
+            </select>
+
+
+        </div>
+        <div class="row">
+            <div class="demo-section">
+                <input type="file" name="files" id="files" />
+                <button onclick="uploadFile()">Upload File</button>
+
+            </div>
+        </div>
+    </form>
+
+    <div id="grid">
+    </div>
+    <!-- Add this button to your HTML or Razor view -->
+
+    <script id="fileTemplate" type="text/x-kendo-template">
+        <span class='k-progress'></span>
+        <div class='file-wrapper'>
+            <span class='file-icon #=addExtensionClass(files[0].extension)#'></span>
+            <h4 class='file-heading file-name-heading'>Name: #=name#</h4>
+            <h4 class='file-heading file-size-heading'>Size: #=size# bytes</h4>
+            <strong class="k-upload-status">
+                <button type='button' class='k-upload-action'></button>
+                <button type='button' class='k-upload-action'></button>
+            </strong>
+        </div>
+    </script>
+
+
+    <script>
+
+        // ... (Your existing JavaScript code)
+
+        function onUpload(e) {
+            e.data = {
+                Entity: "IEMISFILE",
+                EntityId: $('#Id').val(),
+                FileTitle: $('#files').val()
+            };
+        }
+        function uploadFile() {
+            var upload = $("#files").data("kendoUpload");
+            if (upload) {
+                upload.upload();
+            }
+        }
+
+        $("#files").kendoUpload({
+            multiple: true,
+            async: {
+                saveUrl: "/MediaFile/ChunkSave",
+                removeUrl: "/MediaFile/remove",
+                autoUpload: false
+            },
+            upload: onUpload,
+            validation: {
+                maxFileSize: 20000000
+            },
+            template: kendo.template($('#fileTemplate').html())
+        });
+
+        $(document).ready(function () {
+
+
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/StudentInfo",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+                                // Id: { type: "number" },
+                                // SchoolID: { type: "string" },
+                                // Created: { type: "date" },
+                                // Name: { type: "string" },
+                                // ParentId: { type: "number" },
+                                // Description: { type: "string" },
+                                // DisplayOrder: { type: "number" },
+                                // VirtualPath: { type: "string" },
+                                // Filename: { type: "excel" },
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+                                // StudentInfo3: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+                columns: [
+                    {
+                        title: "StudentInformation",
+                        columns: [
+                            { field: "StudentInfo", title: "School ID", width: 120 },
+                            { field: "StudentInfo1", title: "Year", width: 100 },
+                            { field: "StudentInfo2", title: "Reg Id", width: 100 },
+                            { field: "StudentInfo3", title: "First Name", width: 120 },
+                            { field: "StudentInfo4", title: "Last Name", width: 120 },
+                            { field: "StudentInfo5", title: "Gender", width: 100 },
+                            { field: "StudentInfo6", title: "Father's Name", width: 150 },
+                            { field: "StudentInfo7", title: "Mother's Name", width: 150 },
+                            { field: "StudentInfo8", title: "Date Of Birth(BS)", width: 160 },
+                            { field: "StudentInfo9", title: "Date Of Birth(AD)", width: 160 },
+                            { field: "StudentInfo10", title: "Caste", width: 100 },
+                            { field: "StudentInfo11", title: "Disability", width: 120 },
+                            { field: "StudentInfo12", title: "ECD", width: 100 },
+                            { field: "StudentInfo13", title: "Photo", width: 100 },
+                            { field: "StudentInfo14", title: "Contact Number", width: 150 },
+                            { field: "StudentInfo15", title: "Account Number", width: 160 },
+                            { field: "StudentInfo16", title: "Stream", width: 100 },
+                            { field: "StudentInfo17", title: "ECD Type", width: 150 },
+                            { field: "StudentInfo18", title: "ECD Number", width: 150 },
+                            { field: "StudentInfo19", title: "Vital Reg Id", width: 150 },
+                            { field: "StudentInfo20", title: "Schooling Source", width: 170 },
+                            { field: "StudentInfo21", title: "Mother Tongue", width: 150 },
+
+                        ]
+                    },
+                    {
+                        title: "Class Tracking",
+                        columns: [
+                            { field: "ClassTracking", title: "2070", width: 100 },
+                            { field: "ClassTracking1", title: "2071", width: 100 },
+                            { field: "ClassTracking2", title: "2072", width: 100 },
+                            { field: "ClassTracking3", title: "2073", width: 100 },
+                            { field: "ClassTracking4", title: "2074", width: 100 },
+                            { field: "ClassTracking5", title: "2074", width: 100 },
+                            { field: "ClassTracking6", title: "2076", width: 100 },
+                            { field: "ClassTracking7", title: "2077", width: 100 },
+                            { field: "ClassTracking8", title: "2078", width: 100 },
+                            { field: "ClassTracking9", title: "2079", width: 100 },
+                            { field: "ClassTracking10", title: "2080", width: 100 },
+                            { field: "ClassTracking11", title: "2081", width: 100 },
+                        ]
+                    },
+                    {
+                        title: "Scholarship Tracking",
+                        columns: [
+                            { field: "ScholarshipTracking", title: "2070", width: 100 },
+                            { field: "ScholarshipTracking1", title: "2071", width: 100 },
+                            { field: "ScholarshipTracking2", title: "2072", width: 100 },
+                            { field: "ScholarshipTracking3", title: "2073", width: 100 },
+                            { field: "ScholarshipTracking4", title: "2074", width: 100 },
+                            { field: "ScholarshipTracking5", title: "2074", width: 100 },
+                            { field: "ScholarshipTracking6", title: "2076", width: 100 },
+                            { field: "ScholarshipTracking7", title: "2077", width: 100 },
+                            { field: "ScholarshipTracking8", title: "2078", width: 100 },
+                            { field: "ScholarshipTracking9", title: "2079", width: 100 },
+                            { field: "ScholarshipTracking10", title: "2080", width: 100 },
+                            { field: "ScholarshipTracking11", title: "2081", width: 100 },
+                        ]
+                    },
+                    {
+                        title: "Attendance Tracking",
+                        columns: [
+                            { field: "AttendanceTracking", title: "2070", width: 100 },
+                            { field: "AttendanceTracking1", title: "2071", width: 100 },
+                            { field: "AttendanceTracking2", title: "2072", width: 100 },
+                            { field: "AttendanceTracking3", title: "2073", width: 100 },
+                            { field: "AttendanceTracking4", title: "2074", width: 100 },
+                            { field: "AttendanceTracking5", title: "2074", width: 100 },
+                            { field: "AttendanceTracking6", title: "2076", width: 100 },
+                            { field: "AttendanceTracking7", title: "2077", width: 100 },
+                            { field: "AttendanceTracking8", title: "2078", width: 100 },
+                            { field: "AttendanceTracking9", title: "2079", width: 100 },
+                            { field: "AttendanceTracking10", title: "2080", width: 100 },
+                            { field: "AttendanceTracking11", title: "2081", width: 100 },
+                        ]
+                    },
+                    {
+                        title: "Scholarship Amount Tracking",
+                        columns: [
+                            { field: "ScholarshipAmountTracking", title: "2070", width: 100 },
+                            { field: "ScholarshipAmountTracking1", title: "2071", width: 100 },
+                            { field: "ScholarshipAmountTracking2", title: "2072", width: 100 },
+                            { field: "ScholarshipAmountTracking3", title: "2073", width: 100 },
+                            { field: "ScholarshipAmountTracking4", title: "2074", width: 100 },
+                            { field: "ScholarshipAmountTracking5", title: "2074", width: 100 },
+                            { field: "ScholarshipAmountTracking6", title: "2076", width: 100 },
+                            { field: "ScholarshipAmountTracking7", title: "2077", width: 100 },
+                            { field: "ScholarshipAmountTracking8", title: "2078", width: 100 },
+                            { field: "ScholarshipAmountTracking9", title: "2079", width: 100 },
+                            { field: "ScholarshipAmountTracking10", title: "2080", width: 100 },
+                            { field: "ScholarshipAmountTracking11", title: "2081", width: 100 },
+                        ]
+                    },
+                    { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ],
+
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/StudentMarks",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+                columns: [
+                    {
+                        title: "Total",
+                        columns: [
+                            { field: "Total", title: "School ID", width: 120 },
+                            { field: "Total1", title: "Year", width: 100 },
+                            { field: "Total2", title: "Reg Id", width: 100 },
+                            { field: "Total3", title: "Class", width: 120 },
+                            { field: "Total4", title: "Nepali", width: 120 },
+                            { field: "Total5", title: "English", width: 100 },
+                            { field: "Total6", title: "Math", width: 150 },
+                            { field: "Total7", title: "Social Studies", width: 150 },
+                            { field: "Total8", title: "Science", width: 160 },
+                            { field: "Total9", title: "Population and Environment", width: 250 },
+                            { field: "Total10", title: "Subject 7", width: 120 },
+                            { field: "Total11", title: "Subject 8", width: 120 },
+                            { field: "Total12", title: "Subject 9", width: 100 },
+                            { field: "Total13", title: "Subject 10", width: 120 },
+
+
+                        ]
+                    },
+                    {
+                        title: "Theory",
+                        columns: [
+                            { field: "Theory", title: "Nepali", width: 120 },
+                            { field: "Theory1", title: "English", width: 100 },
+                            { field: "Theory2", title: "Math", width: 100 },
+                            { field: "Theory3", title: "Social Studies", width: 120 },
+                            { field: "Theory4", title: "Science", width: 120 },
+                            { field: "Theory5", title: "Population and Environment", width: 100 },
+                            { field: "Theory6", title: "Subject 7", width: 150 },
+                            { field: "Theory7", title: "Subject 8", width: 150 },
+                            { field: "Theory8", title: "Subject 9", width: 160 },
+                            { field: "Theory9", title: "Subject 10", width: 250 },
+
+                        ]
+                    },
+                    {
+                        title: "Pratical",
+                        columns: [
+                            { field: "Practical", title: "Nepali", width: 120 },
+                            { field: "Practical1", title: "English", width: 100 },
+                            { field: "Practical2", title: "Math", width: 100 },
+                            { field: "Practical3", title: "Social Studies", width: 120 },
+                            { field: "Practical4", title: "Science", width: 120 },
+                            { field: "Practical5", title: "Population and Environment", width: 250 },
+                            { field: "Practical6", title: "Subject 7", width: 150 },
+                            { field: "Practical7", title: "Subject 8", width: 150 },
+                            { field: "Practical8", title: "Subject 9", width: 160 },
+                            { field: "Practical9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "First Term",
+                        columns: [
+                            { field: "FirstTerm", title: "Nepali", width: 120 },
+                            { field: "FirstTerm1", title: "English", width: 100 },
+                            { field: "FirstTerm2", title: "Math", width: 100 },
+                            { field: "FirstTerm3", title: "Social Studies", width: 120 },
+                            { field: "FirstTerm4", title: "Science", width: 120 },
+                            { field: "FirstTerm5", title: "Population and Environment", width: 250 },
+                            { field: "FirstTerm6", title: "Subject 7", width: 150 },
+                            { field: "FirstTerm7", title: "Subject 8", width: 150 },
+                            { field: "FirstTerm8", title: "Subject 9", width: 160 },
+                            { field: "FirstTerm9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "Second Term",
+                        columns: [
+                            { field: "SecondTerm", title: "Nepali", width: 120 },
+                            { field: "SecondTerm1", title: "English", width: 100 },
+                            { field: "SecondTerm2", title: "Math", width: 100 },
+                            { field: "SecondTerm3", title: "Social Studies", width: 120 },
+                            { field: "SecondTerm4", title: "Science", width: 120 },
+                            { field: "SecondTerm5", title: "Population and Environment", width: 250 },
+                            { field: "SecondTerm6", title: "Subject 7", width: 150 },
+                            { field: "SecondTerm7", title: "Subject 8", width: 150 },
+                            { field: "SecondTerm8", title: "Subject 9", width: 160 },
+                            { field: "SecondTerm9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "Third Term",
+                        columns: [
+                            { field: "ThirdTerm", title: "Nepali", width: 120 },
+                            { field: "ThirdTerm1", title: "English", width: 100 },
+                            { field: "ThirdTerm2", title: "Math", width: 100 },
+                            { field: "ThirdTerm3", title: "Social Studies", width: 120 },
+                            { field: "ThirdTerm4", title: "Science", width: 120 },
+                            { field: "ThirdTerm5", title: "Population and Environment", width: 250 },
+                            { field: "ThirdTerm6", title: "Subject 7", width: 150 },
+                            { field: "ThirdTerm7", title: "Subject 8", width: 150 },
+                            { field: "ThirdTerm8", title: "Subject 9", width: 160 },
+                            { field: "ThirdTerm9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+
+                    {
+                        title: "Fourth Term",
+                        columns: [
+                            { field: "FourthTerm", title: "Nepali", width: 120 },
+                            { field: "FourthTerm1", title: "English", width: 100 },
+                            { field: "FourthTerm2", title: "Math", width: 100 },
+                            { field: "FourthTerm3", title: "Social Studies", width: 120 },
+                            { field: "FourthTerm4", title: "Science", width: 120 },
+                            { field: "FourthTerm5", title: "Population and Environment", width: 250 },
+                            { field: "FourthTerm6", title: "Subject 7", width: 150 },
+                            { field: "FourthTerm7", title: "Subject 8", width: 150 },
+                            { field: "FourthTerm8", title: "Subject 9", width: 160 },
+                            { field: "FourthTerm9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "First Term Pratical",
+                        columns: [
+                            { field: "FirstTermPratical", title: "Nepali", width: 120 },
+                            { field: "FirstTermPractical1", title: "English", width: 100 },
+                            { field: "FirstTermPractical2", title: "Math", width: 100 },
+                            { field: "FirstTermPractical3", title: "Social Studies", width: 120 },
+                            { field: "FirstTermPractical4", title: "Science", width: 120 },
+                            { field: "FirstTermPractical5", title: "Population and Environment", width: 250 },
+                            { field: "FirstTermPractical6", title: "Subject 7", width: 150 },
+                            { field: "FirstTermPractical7", title: "Subject 8", width: 150 },
+                            { field: "FirstTermPractical8", title: "Subject 9", width: 160 },
+                            { field: "FirstTermPractical9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "Second Term Pratical",
+                        columns: [
+                            { field: "SecondTermPratical", title: "Nepali", width: 120 },
+                            { field: "SecondTermPractical1", title: "English", width: 100 },
+                            { field: "SecondTermPractical2", title: "Math", width: 100 },
+                            { field: "SecondTermPractical3", title: "Social Studies", width: 120 },
+                            { field: "SecondTermPractical4", title: "Science", width: 120 },
+                            { field: "SecondTermPractical5", title: "Population and Environment", width: 250 },
+                            { field: "SecondTermPractical6", title: "Subject 7", width: 150 },
+                            { field: "SecondTermPractical7", title: "Subject 8", width: 150 },
+                            { field: "SecondTermPractical8", title: "Subject 9", width: 160 },
+                            { field: "SecondTermPractical9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+                    {
+                        title: "Third Term Pratical",
+                        columns: [
+                            { field: "ThirdTermPratical", title: "Nepali", width: 120 },
+                            { field: "ThirdTermPratical1", title: "English", width: 100 },
+                            { field: "ThirdTermPratical2", title: "Math", width: 100 },
+                            { field: "ThirdTermPratical3", title: "Social Studies", width: 120 },
+                            { field: "ThirdTermPratical4", title: "Science", width: 120 },
+                            { field: "ThirdTermPratical5", title: "Population and Environment", width: 250 },
+                            { field: "ThirdTermPratical6", title: "Subject 7", width: 150 },
+                            { field: "ThirdTermPratical7", title: "Subject 8", width: 150 },
+                            { field: "ThirdTermPratical8", title: "Subject 9", width: 160 },
+                            { field: "ThirdTermPratical9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+
+                    {
+                        title: "Fourth Term Pratical",
+                        columns: [
+                            { field: "FourthTermPratical", title: "Nepali", width: 120 },
+                            { field: "FourthTermPractical1", title: "English", width: 100 },
+                            { field: "FourthTermPractical2", title: "Math", width: 100 },
+                            { field: "FourthTermPractical3", title: "Social Studies", width: 120 },
+                            { field: "FourthTermPractical4", title: "Science", width: 120 },
+                            { field: "FourthTermPractical5", title: "Population and Environment", width: 250 },
+                            { field: "FourthTermPractical6", title: "Subject 7", width: 150 },
+                            { field: "FourthTermPractical7", title: "Subject 8", width: 150 },
+                            { field: "FourthTermPractical8", title: "Subject 9", width: 160 },
+                            { field: "FourthTermPractical9", title: "Subject 10", width: 160 },
+                        ]
+                    },
+
+                    { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ],
+
+            });
+
+
+
+        });
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/TeacherPerfonalInfo",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+
+
+                columns: [
+                    { field: "SchoolId", title: "School ID", width: 120 },
+                    { field: "TeacherId", title: "Teacher ID", width: 120 },
+                    { field: "TeacherName", title: "Teacher Name", width: 150 },
+                    { field: "Sex", title: "Sex", width: 120 },
+                    { field: "CasteEthnicity", title: "CasteEthnicity", width: 160 },
+                    { field: "Nationality", title: "Nationality", width: 150 },
+                    { field: "Citizenship", title: "Citizenship", width: 150 },
+                    { field: "Certificate", title: "Certificate", width: 150 },
+                    { field: "Others", title: "Others", width: 160 },
+                    { field: "CitizenshipNo", title: "CitizenshipNo", width: 150 },
+                    { field: "MajorSubject", title: "Major Subject", width: 150 },
+                    { field: "FatherSName", title: "Father's Name", width: 150 },
+                    { field: "MotherSName", title: "Mother's Name", width: 150 },
+                    { field: "Address", title: "Address", width: 120 },
+                    { field: "CitNo", title: "CIT No.", width: 120 },
+                    { field: "MotherTongue", title: "Mother Tongue", width: 150 },
+                    { field: "Disability", title: "Disability", width: 120 },
+                    { field: "Email", title: "Email", width: 200 },
+                    { field: "TelephoneMobileNo", title: "Telephone/Mobile No", width: 200 },
+                    { field: "CurrentLevel", title: "Current Level", width: 120 },
+                    { field: "Rank", title: "Rank", width: 120 },
+                    { field: "Position", title: "Position", width: 120 },
+                    { field: "TeacherType", title: "Teacher Type", width: 150 },
+                    { field: "LicenseNo", title: "License No", width: 120 },
+                    { field: "InsuranceNo", title: "Insurance No", width: 160 },
+                    { field: "PfAccountNo", title: "PF Account No", width: 160 },
+                    { field: "TrkNo", title: "Trk No", width: 120 },
+                    { field: "BankAccountNo", title: "BankAccountNo", width: 200 },
+                    { field: "BankName", title: "BankName", width: 200 },
+
+
+
+                    // { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    // { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ]
+
+            });
+
+
+
+        });
+
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/TeacherEducationalInfo",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+
+
+                columns: [
+                    { field: "SchoolId", title: "School ID", width: 120 },
+                    { field: "TeacherId", title: "Teacher ID", width: 120 },
+                    { field: "Year", title: "Year", width: 150 },
+                    { field: "Qualification", title: "Qualification", width: 120 },
+                    { field: "BoardUniversity", title: "Board/University", width: 160 },
+                    { field: "YearPassed", title: "Year Passed", width: 150 },
+                    { field: "Stream", title: "Stream", width: 150 },
+                    { field: "Division", title: "Division", width: 150 },
+                    { field: "EducationCourse", title: "Education Course", width: 160 },
+                    { field: "Ecd", title: "ECD", width: 150 },
+                    { field: "Class1", title: "Class 1", width: 150 },
+                    { field: "Class2", title: "Class 2", width: 150 },
+                    { field: "Class3", title: "Class 3", width: 150 },
+                    { field: "Class4", title: "Class 4", width: 150 },
+                    { field: "Class5", title: "Class 5", width: 150 },
+                    { field: "Class6", title: "Class 6", width: 150 },
+                    { field: "Class7", title: "Class 7", width: 150 },
+                    { field: "Class8", title: "Class 8", width: 150 },
+                    { field: "Class9", title: "Class 9", width: 150 },
+                    { field: "Class10", title: "Class 10", width: 150 },
+                    { field: "Class11", title: "Class 11", width: 150 },
+                    { field: "Class12", title: "Class 12", width: 150 },
+                    { field: "English", title: "English", width: 100 },
+                    { field: "Nepali", title: "Nepali", width: 120 },
+                    { field: "Math", title: "Math", width: 150 },
+                    { field: "Social", title: "Social Studies", width: 150 },
+                    { field: "Accounts", title: "Accounts", width: 160 },
+                    { field: "Sanskrit", title: "Sanskrit", width: 160 },
+                    { field: "PopulationHealth", title: "Population and Environment", width: 250 },
+                    { field: "Environment", title: "Environment", width: 160 },
+                    { field: "Economics", title: "Economics", width: 160 },
+                    { field: "Optional", title: "Optional", width: 160 },
+                    { field: "Others", title: "Others", width: 160 },
+
+
+
+
+
+                    //     { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    //     { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ]
+
+            });
+        });
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/TeacherTeachingHistory",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+
+
+                columns: [
+                    { field: "SchoolId", title: "School ID", width: 120 },
+                    { field: "TeacherId", title: "Teacher ID", width: 120 },
+                    { field: "Year", title: "Year", width: 150 },
+                    { field: "Sn", title: "SN", width: 150 },
+                    { field: "AppointmentMade", title: "Appointment Made", width: 150 },
+                    { field: "DecisionMade", title: "Decision Made", width: 150 },
+                    { field: "Level", title: "Level", width: 150 },
+                    { field: "Rank", title: "Rank", width: 150 },
+                    { field: "Position", title: "Position", width: 150 },
+                    { field: "District", title: "District", width: 150 },
+
+
+
+
+
+
+                    //     { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    //     { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ]
+
+            });
+
+
+
+
+        });
+
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/TeacherTraininfInfo",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                StudentInfo: { type: "string" },
+                                StudentInfo1: { type: "string" },
+                                StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+
+
+                columns: [
+                    { field: "SchoolId", title: "School ID", width: 120 },
+                    { field: "TeacherId", title: "Teacher ID", width: 120 },
+                    { field: "Year", title: "Year", width: 150 },
+                    { field: "SN", title: "SN", width: 100 },
+                    { field: "TrainingYear", title: "Training Year", width: 150 },
+                    { field: "Type", title: "Type", width: 150 },
+                    { field: "Subject", title: "Subject", width: 150 },
+                    { field: "Duration", title: "Duration", width: 150 },
+                    { field: "Organizer", title: "Organizer", width: 150 },
+
+
+
+
+
+
+
+                    { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ]
+
+            });
+
+
+
+
+        });
+
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/MediaFile/Staff",
+                            dataType: "json"
+                        }
+                    },
+                    schema: {
+                        model: {
+                            fields: {
+
+                                // StudentInfo: { type: "string" },
+                                // StudentInfo1: { type: "string" },
+                                // StudentInfo2: { type: "string" },
+
+
+
+                            }
+                        }
+                    },
+                    pageSize: 20,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                height: 550,
+                filterable: true,
+                sortable: true,
+                pageable: true,
+
+
+                columns: [
+                    { field: "SchoolId", title: "School ID", width: 120 },
+                    { field: "StaffId", title: "Staff Id", width: 120 },
+                    { field: "Year", title: "Year", width: 150 },
+                    { field: "StaffName", title: "Staff Name", width: 100 },
+                    { field: "Sex", title: "Sex", width: 150 },
+                    { field: "CasteEthnicity", title: "Caste/Ethicity", width: 150 },
+                    { field: "Nationality", title: "Nationality", width: 150 },
+                    { field: "CitizenshipNo", title: "DOB(Citizenship)", width: 150 },
+                    { field: "IssueDistrict", title: "Issue District", width: 150 },
+                    { field: "Disability", title: "Disability", width: 150 },
+                    { field: "Email", title: "Email", width: 150 },
+                    { field: "TelephoneMobileNo", title: "Telephone/MobileNo", width: 150 },
+                    { field: "StaffType", title: "Staff Type", width: 150 },
+                    { field: "BankAccountNo", title: "BankAccount No", width: 150 },
+                    { field: "BankName", title: "Bank Name", width: 150 },
+                    { field: "FathersName", title: "Fathers Name", width: 150 },
+                    { field: "MothersName", title: "Mothers Name", width: 150 },
+                    { field: "DOB(Citizenship)", title: "Appointment Date", width: 150 },
+
+
+
+
+
+
+
+                    //     { field: "Remarks", title: "कैफियत", width: 120 },
+
+                    //     { command: "destroy", title: "&nbsp;", width: 150 },
+
+                ]
+
+            });
+
+
+
+        });
+
+        function addExtensionClass(extension) {
+            switch (extension) {
+                case '.jpg':
+                case '.img':
+                case '.png':
+                case '.gif':
+                    return "img-file";
+                case '.doc':
+                case '.docx':
+                    return "doc-file";
+                case '.xls':
+                case '.xlsx':
+                    return "xls-file";
+                case '.pdf':
+                    return "pdf-file";
+                case '.zip':
+                case '.rar':
+                    return "zip-file";
+                default:
+                    return "default-file";
+            }
+        }
+    </script>
+
+    <style>
+        .file-icon {
+            display: inline-block;
+            float: left;
+            width: 48px;
+            height: 48px;
+            margin-left: 10px;
+            margin-top: 13.5px;
+        }
+
+        .img-file {
+            background-image: url(../content/web/upload/jpg.png)
+        }
+
+        .doc-file {
+            background-image: url(../content/web/upload/doc.png)
+        }
+
+        .pdf-file {
+            background-image: url(../content/web/upload/pdf.png)
+        }
+
+        .xls-file {
+            background-image: url(../content/web/upload/xls.png)
+        }
+
+        .zip-file {
+            background-image: url(../content/web/upload/zip.png)
+        }
+
+        .default-file {
+            background-image: url(../content/web/upload/default.png)
+        }
+
+        #example .file-heading {
+            font-family: Arial;
+            font-size: 1.1em;
+            display: inline-block;
+            float: left;
+            width: 60%;
+            margin: 0 0 0 20px;
+            height: 25px;
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #example .file-name-heading {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #example .file-size-heading {
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        li.k-file div.file-wrapper {
+            position: relative;
+            height: 75px;
+            width: 100%;
+        }
+    </style>
+</div>
+

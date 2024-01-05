@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewData["Title"] = "contact";
+    Layout = "~/Views/Shared/_InfraLayout.cshtml";
+}
+
+<!-- Start Breadcrumb Area  -->
+<div class="aster-breadcrumb-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="inner">
+                    <ul class="aster-breadcrumb">
+                        <li class="aster-breadcrumb-item"><a href="/Home/Index">Home</a></li>
+
+                        <li class="separator"></li>
+                        <li class="aster-breadcrumb-item active" aria-current="page">Contact</li>
+                    </ul>
+                    <h1 class="title">Contact Us</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="inner">
+                    <!-- <div class="bradcrumb-thumb">
+                        <img src="assets/images/product/product-45.png" alt="Image">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Area  -->
+<!-- Start Contact Area  -->
+<div class="aster-contact-page-area aster-section-gap">
+    <div class="container">
+        <div class="aster-contact-page">
+            <div class="row row--30">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <h3 class="title mb--10">We would love to hear from you.</h3>
+                        <p>Get in Touch with Us.</p>
+                        <!-- <form id="messageForm" class="aster-contact-form" data-callback="onRecaptchaSuccess">
+                            <div class="row row--10">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="contact-name">Full Name <span>*</span></label>
+                                        <input type="text" class="form-control" placeholder="First Name"
+                                            id="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="contact-name">Full Name <span>*</span></label>
+                                        <input type="text" class="form-control" placeholder="Last Name"
+                                            id="lastName" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label for="contact-phone">Phone <span>*</span></label>
+                                        <input type="text" name="contact-phone" id="phoneNumber"
+                                            class="form-control" pattern="[0-9]{10}"
+                                            title="Please enter a 10-digit phone number" required>
+                                        <div class="invalid-feedback">Please enter a valid 10-digit phone
+                                            number.</div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="contact-email">E-mail <span>*</span></label>
+                                        <input type="email" class="form-control" placeholder="Email" id="email"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Subject <span>*</span></label>
+                                        <input type="text" name="subject" id="subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="contact-message">Your Message</label>
+                                        <textarea name="contact-message" id="message" cols="1"
+                                            rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class=" col-12 g-recaptcha"
+                                    data-sitekey="6LcZZd8nAAAAAECBPSZHeL2Hgi5QpnSnws20qdmr"
+                                    data-callback="onRecaptchaSuccess"></div>
+
+                                <div class="col-12">
+                                    <div class="form-group mb--0 mt--35">
+
+                                        <button name="submit" type="submit" id="submit"
+                                            class="aster-btn btn-bg-primary" disabled>Send Message</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form> -->
+                        <form method="post" action="" id="messageForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="First-Name">First Name</label>
+                                        <input type="text" class="form-control" placeholder="First Name"
+                                               id="firstName" required />
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Last-Name">Last Name</label>
+                                        <input type="text" class="form-control" placeholder="Last Name"
+                                               id="lastName" required />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Email">Your Email</label>
+                                        <input type="email" class="form-control" placeholder="Email" id="email"
+                                               required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Contact">Contact Number</label>
+                                        <input type="text" class="form-control" placeholder="Phone Number"
+                                               id="phoneNumber" required />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Subject">Subject</label>
+                                        <input type="text" class="form-control" placeholder="Subject"
+                                               id="subject" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Message">Message</label>
+                                        <textarea type="text" class="form-control" placeholder="Message"
+                                                  id="message" required></textarea>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb--0 mt--35">
+
+                                        <!-- <button name="submit" type="submit" id="submit"
+                                            class="aster-btn btn-bg-primary" disabled>Send Message</button> -->
+
+                                        <button type="submit" class="aster-btn btn-bg-primary"
+                                                value="submit">
+                                            Send
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                        <!-- <div class="modal fade" id="myModalSent">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Message Sent </h4>
+
+                                    </div>
+
+                                    <div class="modal-footer modal-custum">
+
+                                        <button type="submit" class="btn btn-primary close " id="close_sent"
+                                            data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="myModalError">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Message not sent </h4>
+
+                                    </div>
+
+
+                                    <div class="modal-footer modal-custum">
+
+                                        <button type="submit" class="btn btn-danger close " id="close_notsent"
+                                            data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-location mb--40">
+                        <h4 class="title mb--20">Our Address</h4>
+                        <span class="address ">Jwagal,Chakupat-11 Lalitpur, Nepal</span>
+                        <span class="email">Email: info@infrasoft.com.np</span>
+                        <span class="phone">Phone: +977-01-5269200 </span>
+
+                    </div>
+                    <div class="opening-hour">
+                        <h4 class="title mb--20">Opening Hours:</h4>
+                        <p>
+                            Sun - Fri: 9:30 am - 05:30pm / <br> Closed on Saturday
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Google Map Area  -->
+        <div class="aster-google-map-wrap aster-section-gap pb--0">
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d452237.7482597856!2d85.327444!3d27.683075!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19b46bb74895%3A0x216f089f8b5d35d1!2sInfrasoft%20Solutions%20Pvt.%20Ltd.!5e0!3m2!1sen!2sus!4v1691927392929!5m2!1sen!2sus"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+        <!-- End Google Map Area  -->
+    </div>
+</div>
+<!-- End Contact Area  -->
+

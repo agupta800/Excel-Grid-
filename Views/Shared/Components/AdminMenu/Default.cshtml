@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AsterWebApp.Models.MenuModel>
+@using static AsterWebApp.Helpers.NavigationIndicatorHelper;
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4 admin-aside">
+    <div class="sidebar">
+        <a href="~/Home" class="brand-link">
+            <img src="~/images/semis-logo.png" alt="AdminLTE Logo" class="brand-image elevation-3">
+
+        </a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+                <div class="info">
+                    <a href="#" class="d-block">Hi, @User.Identity.Name </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="info">
+                    <a href="#" class="d-block">Hi, Visitor</a>
+                </div>
+            </div>
+        }
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @* <li class="nav-item ">
+                <a asp-area="Admin" asp-controller="Banks" asp-action="Index" class="nav-link @Url.MakeActiveClass("Banks","index")">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                Home
+                </p>
+                </a>
+                </li>*@
+
+                @foreach (var item in Model)
+                {
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas @item.IconClass"></i>
+                            <p>@item.Name <i class="right fas fa-angle-left"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach (var innerItem in item.SubMenuModels)
+                            {
+                                <li class="nav-item">
+                                    <a asp-area="@innerItem.AreaName" asp-controller="@innerItem.ControllerName" asp-action="@innerItem.ViewName" class="nav-link  @Url.MakeActiveClass(@innerItem.ControllerName,@innerItem.ViewName)">
+                                        <i class="nav-icon fas fa-home"></i>
+                                        <p>
+                                            @innerItem.Name
+                                        </p>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                    </li>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item menu-open">
+                        <a asp-area="Admin" asp-controller="Banks" asp-action="Index" class="nav-link @Url.MakeActiveClass("Banks","Index")">
+                            <i class="nav-icon fas fa-lock"></i>
+                            <p>
+                                Banks
+                            </p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</aside>

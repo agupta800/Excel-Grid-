@@ -1,0 +1,209 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #dc3545;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+body {
+  position: relative;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  color: #818896;
+  line-height: 30px;
+  background: #3a3f48;
+  box-shadow: 0px 1px 5px #282c33;
+  border-top: 1px solid #464a52;
+  cursor: pointer;
+}
+
+.footer:hover {
+  color: #fff;
+}
+/*-----Icon style -----*/
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "semis";
+  src: url("../fonts/semis.eot");
+  src: url("../fonts/semis.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/semis.woff") format("woff"),
+    url("../fonts/semis.ttf") format("truetype"),
+    url("../fonts/semis.svg#semis") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "semis" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "semis" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-accounts:before {
+  content: "\61";
+}
+
+.icon-canteen:before {
+  content: "\62";
+}
+
+.icon-certificate:before {
+  content: "\63";
+}
+
+.icon-communication:before {
+  content: "\64";
+}
+
+.icon-exam:before {
+  content: "\65";
+}
+
+.icon-fee:before {
+  content: "\66";
+}
+
+.icon-homework:before {
+  content: "\67";
+}
+
+.icon-academics:before {
+  content: "\68";
+}
+
+.icon-hostel:before {
+  content: "\69";
+}
+
+.icon-human-resources:before {
+  content: "\6a";
+}
+
+.icon-inventory:before {
+  content: "\6b";
+}
+
+.icon-leave:before {
+  content: "\6c";
+}
+
+.icon-library:before {
+  content: "\6d";
+}
+
+.icon-parent:before {
+  content: "\6e";
+}
+
+.icon-payroll:before {
+  content: "\6f";
+}
+
+.icon-study-materials:before {
+  content: "\70";
+}
+
+.icon-teacher:before {
+  content: "\71";
+}
+
+.icon-transport:before {
+  content: "\72";
+}
+.body-content {
+  background: rgba(247, 248, 250, 0.5);
+  box-shadow: 0px 0px 90px rgb(95 85 189/ 25%);
+  backdrop-filter: blur(10.8731px);
+  padding: 10px;
+  border-radius: 10px;
+  height: 90vh;
+  overflow: scroll;
+}
+.body-content h1 {
+  font-size: 22px;
+}
+.body-content h4 {
+  font-size: 16px;
+}
+.table .thead-light th {
+  background-color: #17a2b8 !important;
+  color: #fff !important;
+}
